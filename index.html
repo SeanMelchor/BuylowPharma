@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buylow Pharmacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: whitesmoke;
+      font-family: 'Open Sans', sans-serif;
+      color: black;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 10px 20px;
+      background-color: lightblue;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .h1 {
+      font-family: 'Montserrat', sans-serif;
+      padding-left: 40px;
+    }
+
+    .navigation {
+      display: flex;
+      list-style: none;
+      padding-right: 10px;
+      align-items: center;
+      margin: 0;
+    }
+
+    .navigationItem {
+      margin-right: 10px;
+    }
+
+    .navigationItem a {
+      color: inherit;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+
+    .navigationItem a:hover {
+      background-color: #995353;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .search-bar input[type="search"] {
+      padding: 10px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    .search-bar input[type="search"]:focus {
+      border-color: #995353;
+    }
+
+    .cta {
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .cta:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: calc(100% - 10px);
+      max-height: 200px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .suggestion {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .suggestion:hover {
+      background-color: #f0f0f0;
+    }
+
+    .main {
+      padding: 20px;
+    }
+
+    .section {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      flex-basis: 30%;
+      color: black;
+      text-align: center;
+      margin: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+    }
+
+    .service img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .service a {
+      display: block;
+      margin-top: 10px;
+      color: black;
+      text-decoration: none;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .service a:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .footer {
+      background-color: #282828;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .footer .slogan {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5em;
+    }
+
+    .footer .contact {
+      margin-top: 10px;
+    }
+
+    @media only screen and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar input[type="search"] {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  .services .service {
+    flex-basis: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="h1">
+      <h1>BuyLow Pharmacy</h1>
+    </div>
+    <nav class="navigation">
+      <li class="navigationItem"><a href="index.html">HOME</a></li>
+      <li class="navigationItem"><a href="aboutus.html">CONTACT US</a></li>
+      <div class="search-bar">
+        <input id="searchInput" type="search" placeholder="Search products...">
+        <button class="cta" onclick="handleSearch()">Search</button>
+        <div id="suggestions" class="suggestions">
+      </div>
+    </nav>
+  </header>
+
+  <div class="main">
+    <div class="section services">
+      <div class="service">
+        <img src="tablets.jpeg" alt="Tablets">
+        <h2>Orals</h2>
+        <p>High-quality tablets for various health needs.</p>
+        <a href="orals.html">Explore Tablets & Capsules</a>
+      </div>
+      <div class="service">
+        <img src="syringe.jpg" alt="Capsules">
+        <h2>Injectables</h2>
+        <p>Effective injectables for different treatments.</p>
+        <a href="injectibles.html">Explore Injectables</a>
+      </div>
+      <div class="service">
+        <img src="medsupp.jpg" alt="Medical Supplies">
+        <h2>Medical Supplies</h2>
+        <p>All the medical supplies you need.</p>
+        <a href="medicalsupplies.html">Explore Supplies</a>
+      </div>
+      <div class="service">
+        <img src="bioref.jpeg" alt="Ampules">
+        <h2>Bio-Refrigerated Products</h2>
+        <p>High-quality Bioref products for various health needs.</p>
+        <a href="bioref.html">Explore Bioref Products</a>
+      </div>
+      <div class="service">
+        <img src="medequip.png" alt="  Injectables">
+        <h2>Medical Equipments</h2>
+        <p>Reliable Equipments for different scenarios.</p>
+        <a href="medequip.html">Explore Medical Equipment</a>
+      </div>
+      <div class="service">
+        <img src="galenicals.jpeg" alt="Others">
+        <h2>Galenicals</h2>
+        <p>Explore Galenicals.</p>
+        <a href="galenicals.html">Explore Others</a>
+      </div>
+      <div class="service">
+        <img src="others.jpeg" alt="Others">
+        <h2>Others</h2>
+        <p>All other medical needs covered.</p>
+        <a href="others.html">Explore Others</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="slogan">
+      "Mura't Mabisang Gamot"
+    </div>
+    <div class="contact">
+      Contact us: (075) 523-9534 | 0917 579 2049 | buylowpharmacy@gmail.com
+    </div>
+  </footer>
+</body>
+</html>
+
+<script>
+  const products = [
+    { name: 'Paracetamol', url: 'orals.html' },
+    { name: 'Ibuprofen', url: 'orals.html' },
+    { name: 'Aspirin', url: 'orals.html' },
+    { name: 'Loperamide', url: 'orals.html' },
+    { name: 'Amoxicillin', url: 'orals.html' },
+    { name: 'Doxycycline', url: 'orals.html' },
+    { name: 'Omeprazole', url: 'orals.html' },
+    { name: 'Insulin', url: 'injectibles.html' },
+    { name: 'Heparin', url: 'injectibles.html' },
+    { name: 'Ketamine', url: 'injectibles.html' },
+    { name: 'Adrenaline', url: 'injectibles.html' },
+    { name: 'Vitamin B12', url: 'injectibles.html' },
+    { name: 'Diazepam', url: 'injectibles.html' },
+    { name: 'Syringes', url: 'medicalsupplies.html' },
+    { name: 'Bandages', url: 'medicalsupplies.html' },
+    { name: 'Gloves', url: 'medicalsupplies.html' },
+    { name: 'Adrenaline', url: 'bioref.html' },
+    { name: 'Diazepam', url: 'bioref.html' },
+    { name: 'Thermometer', url: 'medequip.html' },
+    { name: 'Pulse oximeters', url: 'medequip.html' },
+    { name: 'Blood pressure cuffs', url: 'medequip.html' },
+    { name: 'Efficasent Oil', url: 'galenicals.html' },
+    { name: 'Povidone Iodine', url: 'galenicals.html' },
+    { name: 'Bactidol', url: 'galenicals.html' },
+    { name: 'Vitamin C', url: 'others.html' },
+    { name: 'Zinc', url: 'others.html' },
+    { name: 'Fish Oil', url: 'others.html' }
+  ];
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const input = this.value.toLowerCase();
+    const suggestions = products.filter(product => product.name.toLowerCase().includes(input));
+    const suggestionsBox = document.getElementById('suggestions');
+    suggestionsBox.innerHTML = '';
+    suggestions.forEach(suggestion => {
+      const div = document.createElement('div');
+      div.className = 'suggestion';
+      div.innerText = suggestion.name;
+      div.onclick = () => window.location.href = suggestion.url;
+      suggestionsBox.appendChild(div);
+    });
+  });
+
+  function handleSearch() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const product = products.find(product => product.name.toLowerCase() === input);
+    if (product) {
+      window.location.href = product.url;
+    } else {
+      alert('Product not found');
+    }
+  }
+</script>
+</body>
+</html>
