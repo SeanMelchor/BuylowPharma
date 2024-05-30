@@ -202,6 +202,14 @@
     align-items: center;
   }
 
+   .navigationItem {
+    margin-bottom: 20px; /* Add margin bottom to create space between buttons */
+  }
+
+  .navigationItem:last-child {
+    margin-bottom: 0; /* Remove margin bottom from the last button */
+  }
+
   .search-bar {
     flex-direction: column;
     align-items: center;
@@ -221,13 +229,6 @@
     flex-basis: 100%;
   }
 
-      .navigationItem {
-  margin-bottom: 40px; /* Add margin bottom to create space between buttons */
-}
-
-.navigationItem:last-child {
-  margin-bottom: 0; /* Remove margin bottom from the last button */
-}
 }
 
   </style>
